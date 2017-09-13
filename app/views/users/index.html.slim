@@ -1,0 +1,16 @@
+row
+  .col-sm-3.col-md-6
+    = form_tag(users_path, method: :get)
+      .form-group
+        input.form-control placeholder="Search by email" type="text" name="q"
+      button.btn.btn-primary type="submit"  Go
+
+    table.table
+      thead
+        tr
+          th Username
+          th
+      tbody
+        -@users.each do |user|
+          =render partial: 'user', locals: { user: user }
+    = will_paginate @users, renderer: BootstrapPagination::Rails if @users.present?

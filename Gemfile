@@ -27,7 +27,8 @@ gem 'turbolinks', '~> 5'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'slim'
-
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'
