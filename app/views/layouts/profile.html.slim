@@ -13,12 +13,6 @@ html
       .container-fluid
         .navbar-header
           a.navbar-brand href="#"  Test assigment
-        #bs-example-navbar-collapse-1.collapse.navbar-collapse
-          ul.nav.navbar-nav
-          form.navbar-form.navbar-left role="search"
-            .form-group
-              input.form-control placeholder="Search" type="text" /
-            button.btn.btn-default type="submit"  Submit
     .row
       .col-sm-4.col-md-3.sidebar
         .mini-submenu
@@ -29,7 +23,7 @@ html
           span.list-group-item.active href="#"
             |  Actions
           = nav_link('Users', users_path, 'fa-users')
-          = nav_link('Messages', messages_path, 'fa-comment-o')
+          = messages_link(@unread_count)
           = nav_link('Edit profile', edit_user_registration_path, 'fa-user')
           = nav_link('Logout', destroy_user_session_path, 'fa-sign-out')
       ==yield

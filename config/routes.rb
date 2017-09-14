@@ -15,4 +15,6 @@ Rails.application.routes.draw do
       get 'conversation/:id', action: :show
     end
   end
+
+  root 'users#index'
 end

@@ -11,4 +11,9 @@ class User < ApplicationRecord
                 .eager_load(:sender, :recipient, :last_message)
                 .where('messages.id IS NOT NULL').order('messages.id DESC')
   end
+
+  def unread_messages
+    Message.eager_load(:conversation).where('conversations.sender_id = ? OR conversations.recipient_id = ?', id, id)
+          .where('read IS NULL AND messages.user_id <> ?', id)
+  end
 end
