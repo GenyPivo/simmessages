@@ -13,4 +13,4 @@ row
       tbody
         -@users.each do |user|
           =render partial: 'user', locals: { user: user }
-    = will_paginate @users, renderer: BootstrapPagination::Rails if @users.present?
+    = paginate @users

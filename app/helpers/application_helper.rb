@@ -5,4 +5,8 @@ module ApplicationHelper
       content_tag(:i, class: 'fa '.concat(icon)) {} + " #{link_text}"
     end
   end
+
+  def paginate(collection)
+    will_paginate collection, renderer: BootstrapPagination::Rails if collection.present?
+  end
 end

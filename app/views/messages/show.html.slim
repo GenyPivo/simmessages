@@ -13,6 +13,7 @@ row
                 tbody
                 - @messages.each do |message|
                   = render partial: 'message', locals: {message: message, conversation: @conversation }
+              = paginate @messages
     - else
       h3 You don't have conversations yet
       = link_to 'Find someone', users_path

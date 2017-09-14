@@ -4,10 +4,13 @@ class MessagesController < ApplicationController
   before_action :init_conversation, only: [:new, :create]
   before_action :find_conversation, only: [:show]
 
+  DEFAULT_PER_PAGE = 10.freeze
+
   layout 'profile'
 
   def index
     @conversations = current_user.conversations
+                                 .paginate(per_page: DEFAULT_PER_PAGE, page: params[:page])
   end
 
   def new
@@ -27,6 +30,7 @@ class MessagesController < ApplicationController
     @conversation.messages.where('read IS NULL AND user_id <> ?', current_user.id)
                           .update_all(read: true)
     @messages = @conversation.messages.order('id DESC')
+                             .paginate(per_page: DEFAULT_PER_PAGE, page: params[:page])
     @recipient = @conversation.rcpt(current_user)
   end
 
