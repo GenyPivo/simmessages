@@ -1,0 +1,8 @@
+= form_for([recipient, message], html: {class: 'form-horizontal'}) do
+  .form-group
+    -if rcpt
+      label.control-label.col-sm-2 for="email"  Recipient:
+      .col-sm-10
+        p.form-control-static #{recipient.email}
+    textarea#message.form-control.col-sm-2 rows="3" name="body"
+  button.btn.btn-primary type="submit"  Send message

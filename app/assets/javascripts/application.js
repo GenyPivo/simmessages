@@ -11,5 +11,12 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require_tree .
+//= require jquery
+//= require jquery_ujs
+
+$(document).ready(function(){
+  $('tr[data-href]').on("click", function() {
+      document.location = $(this).data('href');
+  });
+});

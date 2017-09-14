@@ -9,5 +9,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :messages, only: [:new, :create]
   end
-  resources :messages, only: [:index, :show, :destroy]
+
+  resources :messages, only: [:index, :destroy] do
+    collection do
+      get 'conversation/:id', action: :show
+    end
+  end
 end

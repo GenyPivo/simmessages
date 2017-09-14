@@ -1,0 +1,18 @@
+row
+  .col-sm-3.col-md-6
+    = render partial: 'message_form', locals: {recipient: @recipient, message: Message.new, rcpt: false}
+row
+  .row
+    - if @conversation.present?
+      section.content
+      .col-md-6
+        .panel.panel-default
+          .panel-body
+            .table-container
+              table.table.table-filter
+                tbody
+                - @messages.each do |message|
+                  = render partial: 'message', locals: {message: message, conversation: @conversation }
+    - else
+      h3 You don't have conversations yet
+      = link_to 'Find someone', users_path

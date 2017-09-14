@@ -1,1 +1,22 @@
-h1 Hello
+row
+  .row
+    - if @conversations.present?
+      section.content
+      .col-md-6
+        .panel.panel-default
+          .panel-body
+            .table-container
+              table.table.table-filter
+                tbody
+                - @conversations.each do |conversation|
+                  = render partial: 'conversation', locals: { conversation: conversation }
+    - else
+      h3 You don't have conversations yet
+      = link_to 'Find someone', users_path
+
+
+  / .col-sm-3.col-md-6
+  /   - @messages.each do |message|
+  /     = render partial: 'message', locals: { message: message }
+
+
