@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```sh
+  $ docker-compose up -d db redis
+  $ docker-compose build web
+  $ docker-compose run --rm web rake db:create db:migrate db:seed
+  $ docker-compose up
+```
+Check localhost:3000
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Admin: admin@test.com
+Pass: 111111

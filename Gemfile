@@ -30,6 +30,8 @@ gem 'slim'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'jquery-rails'
+gem 'redis', '~> 3.2'
+gem 'pg'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6'

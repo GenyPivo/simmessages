@@ -1,0 +1,22 @@
+version: "2"
+services:
+  db:
+    image: postgres:9.5.1
+    environment:
+      POSTGRES_USER: "tickets"
+      POSTGRES_PASSWORD: "tickets"
+      POSTGRES_DB: 'tickets_dev'
+  web:
+      build: .
+      command: bash -c "redis-server --daemonize yes && bundle exec rails s -b 0.0.0.0 -p 3000"
+      environment:
+        PG_HOST: 'db'
+        PG_USERID: 'tickets'
+        PG_PASSWORD: 'tickets'
+        PG_DATABASE: 'tickets_dev'
+      volumes:
+        - .:/app
+      ports:
+        - "3000:3000"
+      depends_on:
+        - db
