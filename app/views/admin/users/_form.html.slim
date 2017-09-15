@@ -1,0 +1,28 @@
+= form_for [:admin, @user] do |f|
+  - if user.errors.any?
+    #error_explanation
+      h2
+        = pluralize(user.errors.count, "error")
+        |  prohibited this user from being saved:
+      ul
+        - user.errors.full_messages.each do |message|
+          li= message
+  .field
+    = f.label :email
+    br
+    = f.email_field :email, autofocus: true, class: 'form-control'
+  .field
+    = f.label :password
+    br
+    = f.password_field :password, autocomplete: "off", class: 'form-control'
+  .field
+    = f.label :admin
+    br
+    = f.check_box :admin
+  .field
+    = f.label :blocked
+    br
+    = f.check_box :blocked
+
+  .actions
+    button.btn.btn-primary type="submit" style="margin-top: 20px;"  Submit

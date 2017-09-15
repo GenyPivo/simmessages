@@ -13,7 +13,7 @@ class Conversation < ApplicationRecord
   end
 
   def rcpt(current_user)
-    return recipient if sender.id == current_user
+    return recipient if sender.id == current_user.id
     sender
   end
 end

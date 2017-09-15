@@ -7,7 +7,7 @@ tr data-status="pendiente"
         span.media-meta.pull-right
           = message.message_time
         h4.title
-          = conversation.recipient.email
+          = message_sender(message.user)
           span.pull-right.pendiente
         p.summary
           = message.body

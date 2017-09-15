@@ -22,8 +22,9 @@ html
         .list-group
           span.list-group-item.active href="#"
             |  Actions
+          = nav_link('Admin Panel', admin_users_path, 'fa-eye') if current_user.admin?
           = nav_link('Users', users_path, 'fa-users')
           = messages_link(@unread_count)
           = nav_link('Edit profile', edit_user_registration_path, 'fa-user')
-          = nav_link('Logout', destroy_user_session_path, 'fa-sign-out')
+          = nav_link('Logout', destroy_user_session_path, 'fa-sign-out', method: :delete)
       ==yield

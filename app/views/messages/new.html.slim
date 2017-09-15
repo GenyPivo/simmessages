@@ -1,3 +1,5 @@
 row
   .col-sm-3.col-md-6
+    p#error
+      = flash[:error]
     = render partial: 'message_form', locals: { recipient: @recipient, message: @message, rcpt: true }

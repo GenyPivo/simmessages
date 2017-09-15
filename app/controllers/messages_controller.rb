@@ -9,7 +9,7 @@ class MessagesController < ApplicationController
   layout 'profile'
 
   def index
-    @conversations = current_user.conversations
+    @conversations = current_user.conversations.includes(:sender, :recipient)
                                  .paginate(per_page: DEFAULT_PER_PAGE, page: params[:page])
   end
 
@@ -18,11 +18,14 @@ class MessagesController < ApplicationController
   end
 
   def create
-    message = @conversation.messages.new
-    message.user = current_user
-    message.body = params[:body]
-    if message.save
+    @message = @conversation.messages.new
+    @message.user = current_user
+    @message.body = params[:body]
+    if @message.save
       redirect_to messages_path
+    else
+      flash[:error] = @message.errors.full_messages.join(', ')
+      render :new
     end
   end
 
@@ -30,6 +33,7 @@ class MessagesController < ApplicationController
     @conversation.messages.where('read IS NULL AND user_id <> ?', current_user.id)
                           .update_all(read: true)
     @messages = @conversation.messages.order('id DESC')
+                             .includes(:user)
                              .paginate(per_page: DEFAULT_PER_PAGE, page: params[:page])
     @recipient = @conversation.rcpt(current_user)
   end

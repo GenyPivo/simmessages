@@ -7,7 +7,7 @@ tr data-status="pendiente" data-href="/messages/conversation/#{conversation.id}"
         span.media-meta.pull-right
           = conversation.last_message.message_time
         h4.title
-          = conversation.recipient.email
+          = conversation.rcpt(current_user).email
           span.pull-right.pendiente
         p.summary
-          = message_preview(conversation.last_message.body)
+          = message_preview(conversation.last_message)

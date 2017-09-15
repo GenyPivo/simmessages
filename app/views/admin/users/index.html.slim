@@ -1,0 +1,24 @@
+row
+  font color="green"
+    = flash[:notice]
+  .col-sm-3.col-md-6
+    = form_tag(admin_users_path, method: :get)
+      .form-group
+        input.form-control placeholder="Search by email" type="text" name="q"
+      button.btn.btn-primary type="submit"  Go
+    = link_to 'Create user', new_admin_user_path
+    table.table
+      thead
+        tr
+          th Username
+          th
+      tbody
+        -@users.each do |user|
+          tr
+            td
+              = user.email
+            td
+              = link_to 'Edit', edit_admin_user_path(user)
+            td
+              = link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }
+    = paginate @users

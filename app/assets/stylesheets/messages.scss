@@ -5,13 +5,13 @@
 #message {
   margin: 10px 10px 0 15px;
 }
+
+p#error {
+  font-color: red;
+}
 /*    --------------------------------------------------
   :: General
   -------------------------------------------------- */
-body {
-  font-family: 'Open Sans', sans-serif;
-  color: #353535;
-}
 .content h1 {
   text-align: center;
 }
